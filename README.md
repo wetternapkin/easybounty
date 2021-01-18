@@ -15,15 +15,15 @@ If you see an important issue, make an issue on GitHub and I will try to fix it.
 Base command: **/bounty create|remove|admin**
 
 ## Create
-Usage: **/bounty create TARGET-NAME REWARD COUNT**
+Usage: **/bounty create TARGET-NAME REWARD COUNT**  
 Permission: easybounty.create
 
 ## Remove
-Usage: **/bounty remove TARGET-NAME**
+Usage: **/bounty remove TARGET-NAME**  
 Permission: easybounty.remove
 
 ## Admin
-Usage: **/bounty admin remove BENEFACTOR-NAME TARGET-NAME**
+Usage: **/bounty admin remove BENEFACTOR-NAME TARGET-NAME**  
 Permission: easybounty.admin.remove
 
 ## Refunds
