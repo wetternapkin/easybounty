@@ -16,12 +16,15 @@ Base command: **/bounty create|remove|admin**
 
 ## Create
 Usage: **/bounty create TARGET-NAME REWARD COUNT**
+Permission: easybounty.create
 
 ## Remove
 Usage: **/bounty remove TARGET-NAME**
+Permission: easybounty.remove
 
 ## Admin
-Usage: **/bounty remove BENEFACTOR-NAME TARGET-NAME**
+Usage: **/bounty admin remove BENEFACTOR-NAME TARGET-NAME**
+Permission: easybounty.admin.remove
 
 ## Refunds
 When you create a bounty, the reward you want to offer is removed from your inventory. If an admin removed your bounty, the plugin will wait for you to be online and will give you back the reward you gave.
