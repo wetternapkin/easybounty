@@ -7,8 +7,6 @@ I'm aware the code is not perfect, it's my first plugin. If I decide to add more
 
 The plugin should work correctly, but **I don't give any garantee**.
 
-RockyLeQc and wetternapkin are the same person
-
 # Pull request
 Don't expect anything if you make a pull request. Again, this is a small personnal project and I don't expect anyone to request changes.
 If you see an important issue, make an issue on GitHub and I will try to fix it.
