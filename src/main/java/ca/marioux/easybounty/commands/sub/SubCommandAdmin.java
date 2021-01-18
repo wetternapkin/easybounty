@@ -31,7 +31,9 @@ public class SubCommandAdmin {
     }
 
     private boolean delete(String target, String benefactor, CommandSender sender) {
-        // TODO: if has permission
+        if (!sender.hasPermission("easybounty.admin.remove")) {
+            return notPermitted(sender);
+        }
 
         PlayerId targetId = PlayerUtils.getPlayerIdFromServer(target);
         PlayerId benefactorId = PlayerUtils.getPlayerIdFromServer(benefactor);
@@ -57,6 +59,11 @@ public class SubCommandAdmin {
 
     private boolean serviceExceptionMessage(CommandSender sender, EasyBountyException e) {
         sender.sendMessage(ChatColor.RED + e.getMessage());
+        return true;
+    }
+
+    private boolean notPermitted(CommandSender sender) {
+        sender.sendMessage(ChatColor.RED + "You don't have the permission to execute that command");
         return true;
     }
 }

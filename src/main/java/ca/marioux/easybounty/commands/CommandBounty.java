@@ -53,6 +53,10 @@ public class CommandBounty implements CommandExecutor {
             return invalidArgumentsForRemove(sender);
         }
 
+        if (!sender.hasPermission("easybounty.remove")) {
+            return notPermitted(sender);
+        }
+
         String targetName = args[1];
         PlayerId targetId = PlayerUtils.getPlayerIdFromServer(targetName);
 
@@ -79,30 +83,35 @@ public class CommandBounty implements CommandExecutor {
 
         if (!(sender instanceof Player)) {
             return invalidCommandInConsole(sender);
-        } else {
-            Player benefactorPlayer = (Player) sender;
-
-            String targetName = args[1];
-            String rewardAsString = args[2];
-            int quantity = Integer.parseInt(args[3]);
-
-            Material rewardMaterial = Material.getMaterial(rewardAsString);
-            ItemStack reward = new ItemStack(rewardMaterial, quantity);
-
-            PlayerId target = PlayerUtils.getPlayerIdFromServer(targetName);
-
-            if (target == null) {
-                return playerDoesntExist(sender);
-            }
-
-            try {
-                bountyService.create(benefactorPlayer, target, reward);
-            } catch (EasyBountyException e) {
-                return serviceExceptionMessage(sender, e);
-            }
-
-            return bountyCreated(sender, targetName);
         }
+
+        if (!sender.hasPermission("easybounty.create")) {
+            return notPermitted(sender);
+        }
+
+        Player benefactorPlayer = (Player) sender;
+
+        String targetName = args[1];
+        String rewardAsString = args[2];
+        int quantity = Integer.parseInt(args[3]);
+
+        Material rewardMaterial = Material.getMaterial(rewardAsString);
+        ItemStack reward = new ItemStack(rewardMaterial, quantity);
+
+        PlayerId target = PlayerUtils.getPlayerIdFromServer(targetName);
+
+        if (target == null) {
+            return playerDoesntExist(sender);
+        }
+
+        try {
+            bountyService.create(benefactorPlayer, target, reward);
+        } catch (EasyBountyException e) {
+            return serviceExceptionMessage(sender, e);
+        }
+
+        return bountyCreated(sender, targetName);
+
     }
 
     private boolean invalidArgumentsForRemove(CommandSender sender) {
@@ -138,6 +147,11 @@ public class CommandBounty implements CommandExecutor {
 
     private boolean successMessage(CommandSender sender, String message) {
         sender.sendMessage(ChatColor.AQUA + message);
+        return true;
+    }
+
+    private boolean notPermitted(CommandSender sender) {
+        sender.sendMessage(ChatColor.RED + "You don't have the permission to execute that command");
         return true;
     }
 }
