@@ -1,0 +1,26 @@
+name: EasyBounty
+version: 1.0
+main: ca.marioux.easybounty.EasyBounty
+api-version: 1.16
+
+commands:
+  bounty:
+    description: Base command to manage bounties
+    usage: /<command> <create|remove|admin>
+    permission-message: You don't have the permission to execute that command
+
+permissions:
+  easybounty.admin:
+    description: Gives access to administration of EasyBounty
+    default: op
+    children:
+      easybounty.create: true
+      easubounty.remove: true
+
+  easybounty.create:
+    description: Gives access to the creation of bounties
+    default: true
+
+  easybounty.remove:
+    description: Gives access to the removal of placed bounties
+    default: true
